@@ -14,7 +14,6 @@ Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.pat
 Patch2:		gettext-1.05-add-iconv.patch
 Summary:	Message handling functions for Perl
 BuildRequires:	gettext-devel perl-devel
-BuildRoot:	%{_tmppath}/%{name}-root
 Conflicts:	nlpr <= 0.0.1-2mdk, drakfloppy <= 0.43-10mdk, urpmi <= 3.6-4mdk
 
 %description
