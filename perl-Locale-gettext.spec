@@ -1,7 +1,7 @@
 %define name perl-Locale-gettext
 %define real_name gettext
 %define version 1.05
-%define release %mkrel 7
+%define release %mkrel 8
 
 Name:		%{name}
 Version:	%{version}
@@ -12,6 +12,7 @@ URL:		http://search.cpan.org/dist/%{real_name}
 Source:		http://www.cpan.org/modules/by-module/Locale/%{real_name}-%{version}.tar.bz2
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
+Patch3:		compatibility-with-POSIX-module.diff
 Summary:	Message handling functions for Perl
 BuildRequires:	gettext-devel perl-devel
 BuildRoot:	%{_tmppath}/%{name}-root
@@ -29,6 +30,7 @@ bindtextdomain().
 %setup -q -n %{real_name}-%{version}
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
