@@ -1,7 +1,7 @@
 %define name perl-Locale-gettext
 %define real_name gettext
 %define version 1.05
-%define release %mkrel 9
+%define release %mkrel 10
 
 Name:		%{name}
 Version:	%{version}
