@@ -53,6 +53,6 @@ bindtextdomain().
 %files
 %defattr(-,root,root)
 %doc README
-%{perl_vendorarch}/Locale/*
-%{perl_vendorarch}/auto/Locale/*
+%{perl_vendorarch}/Locale
+%{perl_vendorarch}/auto/Locale
 %{_mandir}/*/*
