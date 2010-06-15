@@ -1,7 +1,7 @@
 %define upstream_name gettext
 %define upstream_version 1.05
 
-Name:       perl-%{upstream_name}
+Name:       perl-Locale-gettext
 Version:    %perl_convert_version %{upstream_version}
 Release:    %mkrel 1
 
