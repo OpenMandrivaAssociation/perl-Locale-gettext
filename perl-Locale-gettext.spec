@@ -15,8 +15,8 @@ Patch2:		gettext-1.05-add-iconv.patch
 Patch3:		compatibility-with-POSIX-module.diff
 
 BuildRequires:	gettext-devel
-BuildRequires:	perl-devel >= 5.14
-BuildRequires:	perl-List-MoreUtils >= 0.320.0-2
+BuildRequires:	perl-devel >= 2:5.14
+BuildRequires:	perl-List-MoreUtils >= 0.320.0-3
 
 Conflicts:	drakfloppy <= 0.43-10mdk
 Conflicts:	nlpr <= 0.0.1-2mdk
