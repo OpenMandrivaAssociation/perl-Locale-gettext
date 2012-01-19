@@ -3,7 +3,7 @@
 
 Name:       perl-Locale-gettext
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 6
+Release:    7
 
 Summary:	Message handling functions for Perl
 License:	GPL+ or Artistic
@@ -16,7 +16,6 @@ Patch3:		compatibility-with-POSIX-module.diff
 
 BuildRequires:	gettext-devel
 BuildRequires:  perl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 Conflicts:  drakfloppy <= 0.43-10mdk
 Conflicts:	nlpr <= 0.0.1-2mdk
