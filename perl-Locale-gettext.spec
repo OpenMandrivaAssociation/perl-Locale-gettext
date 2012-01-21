@@ -3,7 +3,7 @@
 
 Name:       perl-Locale-gettext
 Version:    %perl_convert_version %{upstream_version}
-Release:    8
+Release:    9
 
 Summary:	Message handling functions for Perl
 License:	GPL+ or Artistic
