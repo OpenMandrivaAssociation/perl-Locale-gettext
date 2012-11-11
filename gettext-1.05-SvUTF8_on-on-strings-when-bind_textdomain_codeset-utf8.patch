@@ -1,0 +1,126 @@
+--- gettext-1.05/gettext.xs.pix	2005-06-01 04:05:00.000000000 +0200
++++ gettext-1.05/gettext.xs	2007-01-18 16:21:05.000000000 +0100
+@@ -19,6 +19,15 @@
+ 	return 0;
+ }
+ 
++char *current_domain = NULL;
++HV *domains_in_utf8 = NULL;
++
++int
++is_domain_utf8(const char *domain)
++{
++	return domain && domains_in_utf8 && hv_exists(domains_in_utf8, domain, strlen(domain));
++}
++
+ #define ANY_MISSING 0
+ 
+ #ifndef HAVE_DGETTEXT
+@@ -67,45 +76,87 @@
+ 	char *		name
+ 	int		arg
+ 
+-char *
++SV *
+ gettext(msgid)
+ 	char *		msgid
++    CODE:
++	RETVAL = newSVpv( gettext(msgid), 0 );
++	if (is_domain_utf8(current_domain))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+-char *
++SV *
+ dcgettext(domainname, msgid, category)
+ 	char *		domainname
+ 	char *		msgid
+ 	int		category
++    CODE:
++	RETVAL = newSVpv( dcgettext(domainname, msgid, category), 0 );
++	if (is_domain_utf8(domainname))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+-char *
++SV *
+ dgettext(domainname, msgid)
+ 	char *		domainname
+ 	char *		msgid
++    CODE:
++	RETVAL = newSVpv( dgettext(domainname, msgid), 0 );
++	if (is_domain_utf8(domainname))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+-char *
++SV *
+ ngettext(msgid, msgid_plural, n)
+ 	char *		msgid
+ 	char *		msgid_plural
+ 	unsigned long	n
++    CODE:
++	RETVAL = newSVpv( ngettext(msgid, msgid_plural, n), 0 );
++	if (is_domain_utf8(current_domain))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+-char *
++SV *
+ dcngettext(domainname, msgid, msgid_plural, n, category)
+ 	char *		domainname
+ 	char *		msgid
+ 	char *		msgid_plural
+ 	unsigned long	n
+ 	int		category
++    CODE:
++	RETVAL = newSVpv( dcngettext(domainname, msgid, msgid_plural, n, category), 0 );
++	if (is_domain_utf8(domainname))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+-char *
++SV *
+ dngettext(domainname, msgid, msgid_plural, n)
+ 	char *		domainname
+ 	char *		msgid
+ 	char *		msgid_plural
+ 	unsigned long	n
++    CODE:
++	RETVAL = newSVpv( dngettext(domainname, msgid, msgid_plural, n), 0 );
++	if (is_domain_utf8(domainname))
++	    SvUTF8_on(RETVAL);
++    OUTPUT:
++	RETVAL
+ 
+ char *
+ textdomain(domain)
+ 	char *		domain
++    CODE:
++	RETVAL = textdomain(domain);
++	if (current_domain) free(current_domain);
++	current_domain = strdup(domain);
++    OUTPUT:
++	RETVAL
+ 
+ char *
+ bindtextdomain(domain, dirname = NULL)
+@@ -116,3 +167,13 @@
+ bind_textdomain_codeset(domain, codeset = NULL)
+ 	char *		domain
+ 	char *		codeset
++    CODE:
++	RETVAL = bind_textdomain_codeset(domain, codeset);
++	if (strcmp(codeset, "UTF8") == 0 || strcmp(codeset, "UTF-8") == 0) {	  
++	    if (!domains_in_utf8) domains_in_utf8 = newHV();
++	    hv_store(domains_in_utf8, domain, strlen(domain), newSV(0), 0);
++	}
++
++    OUTPUT:
++	RETVAL
++	 

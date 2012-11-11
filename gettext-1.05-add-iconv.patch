@@ -1,0 +1,55 @@
+--- gettext-1.05/gettext.xs.pix	2007-01-18 16:23:40.000000000 +0100
++++ gettext-1.05/gettext.xs	2007-01-18 16:23:51.000000000 +0100
+@@ -69,6 +69,36 @@
+ }
+ #endif
+ 
++#include <langinfo.h>
++#include <iconv.h>
++
++/* originally was in gi/perl-install/c/stuff.xs.pl in http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/ */
++SV * iconv_(char* s, char* from_charset, char* to_charset) {
++  iconv_t cd = iconv_open(to_charset, from_charset);
++  char* retval = s;
++  SV* retval_sv;
++  if (cd != (iconv_t) (-1)) {
++      size_t s_len = strlen(retval);
++      /* the maximum expansion when converting happens when converting
++	 tscii to utf-8; each tscii char can become up to 4 unicode chars
++	 and each one of those unicode chars can be 3 bytes long */
++      char *buf = alloca(4 * 3 * s_len);
++      {
++	  char *ptr = buf;
++	  size_t ptr_len = 4 * 3 * s_len;
++	  if ((iconv(cd, &s, &s_len, &ptr, &ptr_len)) != (size_t) (-1)) {
++	      *ptr = 0;
++	      retval = buf;
++	  }
++      }
++      iconv_close(cd);
++  }
++  retval_sv = newSVpv(retval, 0);
++  if (!strcmp(to_charset, "UTF-8") || !strcmp(to_charset, "UTF8"))
++      SvUTF8_on(retval_sv);
++  return retval_sv;
++}
++
+ MODULE = Locale::gettext	PACKAGE = Locale::gettext
+ 
+ double
+@@ -177,3 +207,15 @@
+     OUTPUT:
+ 	RETVAL
+ 	 
++SV *
++iconv(s, from_charset, to_charset)
++  char *s
++  SV *from_charset
++  SV *to_charset
++  CODE:
++  RETVAL = iconv_( s 
++		 , from_charset == &PL_sv_undef ? nl_langinfo(CODESET) : SvPV_nolen(from_charset)
++		 , to_charset == &PL_sv_undef ? nl_langinfo(CODESET) : SvPV_nolen(to_charset)
++		 );
++  OUTPUT:
++  RETVAL
