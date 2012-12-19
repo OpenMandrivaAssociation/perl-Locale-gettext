@@ -1,15 +1,15 @@
-%define upstream_name gettext
-%define upstream_version 1.05
+%define	module	gettext
+%define modver	1.05
 
-Name:       perl-Locale-gettext
-Version:    %perl_convert_version %{upstream_version}
-Release:    10
+Name:		perl-Locale-gettext
+Version:	%{perl_convert_version %{modver}}
+Release:	11
 
 Summary:	Message handling functions for Perl
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/Locale/%{upstream_name}-%{upstream_version}.tar.bz2
+Url:		http://search.cpan.org/dist/%{module}
+Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.bz2
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
 Patch3:		compatibility-with-POSIX-module.diff
@@ -31,7 +31,7 @@ It provides gettext(), dgettext(), dcgettext(), textdomain() and
 bindtextdomain().
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{module}-%{modver}
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -44,21 +44,19 @@ bindtextdomain().
 %{__make} test
 
 %install
-%{__rm} -rf %{buildroot}
 %makeinstall_std
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc README
 %{perl_vendorarch}/Locale
 %{perl_vendorarch}/auto/Locale
 %{_mandir}/*/*
 
-
 %changelog
+* Wed Dec 19 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.50.0-11
+- rebuild against new perl
+- cleanups
+
 * Sun Jan 22 2012 Oden Eriksson <oeriksson@mandriva.com> 1.50.0-10
 + Revision: 765392
 - rebuilt for perl-5.14.2
