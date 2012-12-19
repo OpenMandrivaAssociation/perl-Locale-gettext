@@ -15,8 +15,8 @@ Patch2:		gettext-1.05-add-iconv.patch
 Patch3:		compatibility-with-POSIX-module.diff
 
 BuildRequires:	gettext-devel
-BuildRequires:	perl-devel >= 2:5.14
-BuildRequires:	perl-List-MoreUtils >= 0.320.0-4
+BuildRequires:	perl-devel
+BuildRequires:	perl-List-MoreUtils
 
 %description
 The gettext module permits access from perl to the gettext() family of
@@ -50,6 +50,8 @@ bindtextdomain().
 
 %changelog
 * Wed Dec 19 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.50.0-11
+- drop versioning in buildrequires
+- drop ancient conflicts
 - rebuild against new perl
 - cleanups
 
