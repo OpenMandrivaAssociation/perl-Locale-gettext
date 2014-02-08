@@ -3,7 +3,7 @@
 
 Name:		perl-Locale-gettext
 Version:	%{perl_convert_version %{modver}}
-Release:	12
+Release:	13
 
 Summary:	Message handling functions for Perl
 License:	GPL+ or Artistic
