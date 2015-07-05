@@ -4,7 +4,7 @@
 Summary:	Message handling functions for Perl
 Name:		perl-Locale-gettext
 Version:	%{perl_convert_version %{modver}}
-Release:	23
+Release:	24
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{module}
