@@ -11,7 +11,6 @@ Url:		http://search.cpan.org/dist/%{module}
 Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.gz
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
-Patch3:		compatibility-with-POSIX-module.diff
 BuildRequires:	gettext-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-List-MoreUtils
