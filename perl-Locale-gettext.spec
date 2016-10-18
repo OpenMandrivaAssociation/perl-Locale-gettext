@@ -1,14 +1,14 @@
-%define	module	gettext
-%define modver	1.05
+%define	module gettext
+%define modver 1.07
 
 Summary:	Message handling functions for Perl
 Name:		perl-Locale-gettext
 Version:	%{perl_convert_version %{modver}}
-Release:	27
+Release:	1
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{module}
-Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.bz2
+Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.gz
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
 Patch3:		compatibility-with-POSIX-module.diff
@@ -43,4 +43,3 @@ bindtextdomain().
 %{perl_vendorarch}/Locale
 %{perl_vendorarch}/auto/Locale
 %{_mandir}/man3/*
-
