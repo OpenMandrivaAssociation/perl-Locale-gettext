@@ -25,7 +25,7 @@ It provides gettext(), dgettext(), dcgettext(), textdomain() and
 bindtextdomain().
 
 %prep
-%setup -qn %{module}-%{modver}
+%setup -qn Locale-%{module}-%{modver}
 %apply_patches
 
 %build
