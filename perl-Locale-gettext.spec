@@ -25,7 +25,7 @@ bindtextdomain().
 
 %prep
 %setup -qn Locale-%{module}-%{modver}
-%apply_patches
+%autopatch -p1
 
 %build
 %__perl Makefile.PL INSTALLDIRS=vendor
