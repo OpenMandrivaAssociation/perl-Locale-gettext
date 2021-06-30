@@ -4,10 +4,10 @@
 Summary:	Message handling functions for Perl
 Name:		perl-Locale-gettext
 Version:	%{perl_convert_version %{modver}}
-Release:	5
+Release:	6
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
-Url:		http://metacpan.org/release/%{module}
+Url:		http://metacpan.org/dist/%{module}
 Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.gz
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
@@ -24,8 +24,7 @@ It provides gettext(), dgettext(), dcgettext(), textdomain() and
 bindtextdomain().
 
 %prep
-%setup -qn Locale-%{module}-%{modver}
-%autopatch -p1
+%autosetup -p1 -n Locale-%{module}-%{modver}
 
 %build
 %__perl Makefile.PL INSTALLDIRS=vendor
