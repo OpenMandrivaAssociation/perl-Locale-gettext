@@ -1,5 +1,9 @@
 %define	module gettext
 %define modver 1.07
+%ifarch %{x86_64}
+# FIXME workaround for debuginfo bug
+%global _debugsource_template %{nil}
+%endif
 
 Summary:	Message handling functions for Perl
 Name:		perl-Locale-gettext
