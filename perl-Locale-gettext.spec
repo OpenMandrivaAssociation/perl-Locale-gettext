@@ -8,8 +8,8 @@ Version:	%{modver}
 Release:	11
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
-Url:		https://metacpan.org/dist/gettext
-Source0:	http://www.cpan.org/modules/by-module/Locale/%{module}-%{modver}.tar.gz
+Url:		https://github.com/vandry/Perl-Locale-gettext
+Source0:	https://cpan.metacpan.org/authors/id/P/PV/PVANDRY/Locale-gettext-%{modver}.tar.gz
 Patch1:		gettext-1.05-SvUTF8_on-on-strings-when-bind_textdomain_codeset-utf8.patch
 Patch2:		gettext-1.05-add-iconv.patch
 BuildRequires:	make
